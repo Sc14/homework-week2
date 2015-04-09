@@ -1,5 +1,9 @@
-# Use the `mailbox.rb` file. Fill in and complete the following class
-# definitions:
+# Exercise 3
+#
+# Mailbox - Formatação dados pelo tamanho
+#
+# by Diogo Silva - a6562
+# Ref: http://ruby-doc.org/core-2.2.0/Enumerable.html#method-i-max_by
 
 
 class Email
@@ -41,21 +45,6 @@ class Mailbox
   end
 end
 
-emails = [
-  Email.new("Homework this week", { :date => "2014-12-01", :from => "Ferdous" }),
-  Email.new("Keep on coding! :)", { :date => "2014-12-01", :from => "Dajana" }),
-  Email.new("Re: Homework this week", { :date => "2014-12-02", :from => "Ariane" })
-  ]
-mailbox = Mailbox.new("Ruby Study Group", emails)
-
-mailbox.emails.each do |email|
-  puts "Date:    #{email.date}"
-  puts "From:    #{email.from}"
-  puts "Subject: #{email.subject}"
-  puts
-end
-
-
 class MailboxTextFormatter
 
   def initialize(mailbox)
@@ -68,18 +57,28 @@ class MailboxTextFormatter
 
   def format
 
-    cDate = @mailbox.emails.max_by { |d| d.date.length}.date.length
+    maxDate = @mailbox.emails.max_by { |d| d.date.length}.date.length
+    maxFrom = @mailbox.emails.max_by { |f| f.from.length}.from.length
+    maxSubject = @mailbox.emails.max_by { |s| s.subject.length}.subject.length
 
 
-    puts "Size : #{cDate}"
-    puts
-    puts "Mailbox: #{mailbox.name}"
-    puts
+    puts "Mailbox: #{@mailbox.name}\n\n"
+    puts tabHeader(maxDate,maxFrom,maxSubject)
 
-    oDisp =
-    puts "+"+"-"*(maxFieldLength)+"|"+"-"*(maxFieldLength)
-    puts "| Date | From | Subject"
-    puts "+---"
+    @mailbox.emails.each do |email|
+      print "| #{email.date}" + " "*(maxDate-email.date.length+1)
+      print "| #{email.from}" + " "*(maxFrom-email.from.length+1)
+      print "| #{email.subject}" + " "*(maxSubject-email.subject.length+1) + "|\n"
+      end
+
+      puts "+"+"-"*(maxDate+2)+"+"+"-"*(maxFrom+2)+"+"+"-"*(maxSubject+2)+"+\n"
+
+  end
+
+  def tabHeader(maxDate,maxFrom,maxSubject)
+    "+"+"-"*(maxDate+2)+"+"+"-"*(maxFrom+2)+"+"+"-"*(maxSubject+2)+"+\n" +
+    "| Date" + " "*(maxDate-3) + "| From" + " "*(maxFrom-3) + "| Subject" + " "*(maxSubject-6) + "|\n" +
+    "+"+"-"*(maxDate+2)+"+"+"-"*(maxFrom+2)+"+"+"-"*(maxSubject+2)+"+\n"
   end
 
 
@@ -94,34 +93,3 @@ mailbox = Mailbox.new("Ruby Study Group", emails)
 formatter = MailboxTextFormatter.new(mailbox)
 
 puts formatter.format
-
-
-# '''
-# ```
-# Your goal is to complete the code in a way so it outputs the following:
-# ```
-# Mailbox: Ruby Study Group
-#
-# +------------+---------+------------------------+
-# | Date       | From    | Subject                |
-# +------------+---------+------------------------+
-# | 2014-12-01 | Ferdous | Homework this week     |
-# | 2014-12-01 | Dajana  | Keep on coding! :)     |
-# | 2014-12-02 | Ariane  | Re: Homework this week |
-# +------------+---------+------------------------+
-# ```
-#
-# You are allowed to add as many methods to the classes `Email`, `Mailbox` and
-# `MailboxTextFormatter` as you deem useful. In your final solution you are not
-# allowed to change any of the code outside (after) the class definitions. For
-# debugging purposes, you can, of course, change all the code you want.
-#
-# Try to come up with a working solution first. It does not matter how elegant,
-# generic, or pretty it is. Whatever produces the required output is fine for a
-# first solution. Then, later, look at your code, and try to improve it by
-# cleaning up everything that you do not like, or deem ugly.
-#
-# Eventually, one goal to aim for would be: Adding another column to the
-# table only requires minimal changes, e.g. changes to one or two places in your
-# formatter class.
-# '''
