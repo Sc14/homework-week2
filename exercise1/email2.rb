@@ -2,6 +2,7 @@
 # Exercicio 1.2
 #
 # by Diogo Silva - a6562
+# Ref: http://ruby-doc.org/core-2.2.0/Hash.html
 
 class Email
 
