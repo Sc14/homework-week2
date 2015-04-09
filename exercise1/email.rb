@@ -1,6 +1,6 @@
 # class Email
 # Exercicio 1.1
-#
+# 
 # by Diogo Silva - a6562
 #
 # Ref: http://justintallant.com/classes-in-ruby-using-getters-and-setters/?doing_wp_cron=1428585008.2999188899993896484375

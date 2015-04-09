@@ -1,7 +1,7 @@
 # Exercise 2
 #
 # by Diogo Silva - a6562
-
+#
 # In a new file `mailbox.rb` write a class that has a `name` and `emails`
 # attribute. Make it so that the these attributes can be populated through the
 # `initialize` method (`name` being a string, and `emails` being an array of

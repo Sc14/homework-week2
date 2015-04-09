@@ -12,7 +12,7 @@ class Email
     @date = headers[:date]
     @from = headers[:from]
   end
-
+ 
   #Propriedades (getters & setters)
   def subject
     @subject
