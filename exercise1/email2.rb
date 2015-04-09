@@ -13,23 +13,14 @@ class Email
   end
 
   #Propriedades (getters & setters)
-  def subject=(subject)
-    @subject = subject
-  end
   def subject
     @subject
   end
 
-  def date=(date)
-    @date = date
-  end
   def date
     @date
   end
 
-  def from=(from)
-    @from = from
-  end
   def from
     @from
   end
